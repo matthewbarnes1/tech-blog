@@ -13,16 +13,19 @@
         <h1>Tech Blog</h1>
             <div class="nav">
                 <a href="/">Home</a>
-                <a href="/dashboard">Dashboard</a>
-                {{!-- * If the user isnt logged in, show login --}}
+                {{!-- * If the user is logged in, show logout --}}
                 {{!-- {{#if user == logged_in}} --}}
-                <a href="/">Logout</a>
+                {{!-- <a href="/">Logout</a> --}}
+                <a href="/dashboard">Dashboard</a>
 
                 {{!-- {{else}} --}}
-                <a href="/">Login</a>
+                <a href="/login">Login</a>
+
                 {{!-- ! Show sign-up button on login page --}}
             </div>
 </div >
+{{!-- *This renders the sub-pages, such as dashboard --}}
+{{{ body }}}
 </body>
 
 </html>
