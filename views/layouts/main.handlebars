@@ -13,8 +13,14 @@
         <h1>Tech Blog</h1>
             <div class="nav">
                 <a href="/">Home</a>
-                <a href="/">About</a>
-                <a href="/">Contact</a>
+                <a href="/dashboard">Dashboard</a>
+                {{!-- * If the user isnt logged in, show login --}}
+                {{!-- {{#if user == logged_in}} --}}
+                <a href="/">Logout</a>
+
+                {{!-- {{else}} --}}
+                <a href="/">Login</a>
+                {{!-- ! Show sign-up button on login page --}}
             </div>
 </div >
 </body>
