@@ -1,4 +1,8 @@
 const router = require('express').Router();
-r
-router.get('/api' , async (req, res) => {
-});
+const userRoutes = require('./userRoutes');
+const blogRoutes = require('./blogRoutes');
+
+router.use('/users', userRoutes);
+router.use('/blogs', blogRoutes);
+
+module.exports = router;
