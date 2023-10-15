@@ -35,7 +35,7 @@ router.delete('/delete-blog/:id', withAuth, async (req, res) => {
         const blog = await Blog.findOne({
             where: {
                 id: req.params.id,
-                user_id: req.session.user_id // Ensure the logged-in user owns the blog post
+                user_id: req.session.user_id
             }
         });
         if (blog) {
@@ -55,7 +55,7 @@ router.get('/edit-blog/:id', withAuth, async (req, res) => {
         const blog = await Blog.findOne({
             where: {
                 id: req.params.id,
-                user_id: req.session.user_id // Ensure the logged-in user owns the blog post
+                user_id: req.session.user_id
             }
         });
         if (blog) {
@@ -67,29 +67,30 @@ router.get('/edit-blog/:id', withAuth, async (req, res) => {
         res.status(500).json(err);
     }
 });
-router.post('/update/:id', withAuth, async (req, res) => {
-  try {
-      const updatedBlog = await Blog.update(
-          {
-              title: req.body.title,
-              content: req.body.content
-          },
-          {
-              where: {
-                  id: req.params.id,
-                  user_id: req.session.user_id
-              }
-          }
-      );
 
-      if (updatedBlog) {
-          res.redirect('/dashboard');
-      } else {
-          res.status(404).send('Blog post not found');
-      }
-  } catch (err) {
-      res.status(500).json(err);
-  }
+router.post('/update/:id', withAuth, async (req, res) => {
+    try {
+        const updatedBlog = await Blog.update(
+            {
+                title: req.body.title,
+                content: req.body.content
+            },
+            {
+                where: {
+                    id: req.params.id,
+                    user_id: req.session.user_id
+                }
+            }
+        );
+
+        if (updatedBlog) {
+            res.redirect('/dashboard');
+        } else {
+            res.status(404).send('Blog post not found');
+        }
+    } catch (err) {
+        res.status(500).json(err);
+    }
 });
 
 module.exports = router;
