@@ -19,11 +19,14 @@ router.get('/login', (req, res) => {
       req.session.loggedIn = true;
       return;
     }
+    console.log("Logged in session:", req.session);
     res.render('login');
   });
 
 
   router.get('/dashboard', async (req, res) => {
+    console.log("Dashboard session:", req.session);
+
     try {
         const blogData = await Blog.findAll({
             include: [
@@ -37,10 +40,13 @@ router.get('/login', (req, res) => {
       const blogs = blogData.map((blog) => blog.get({ plain: true }));
   
       res.render('dashboard', {
-        User_username: req.session.User_username,
+        user_username: req.session.user_username,
         blogs,
         loggedIn: req.session.loggedIn,
-      });
+    }
+    
+    );
+    console.log("Blogs retrieved:", blogs);
 
     } catch (err) {
       res.status(500).json(err);
