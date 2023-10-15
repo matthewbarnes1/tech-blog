@@ -48,3 +48,4 @@ sequelize.sync({ force: false }).then(() => {
     );
   });
   
+  //* file casing is important
