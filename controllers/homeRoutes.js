@@ -24,34 +24,33 @@ router.get('/login', (req, res) => {
   });
 
 
-  router.get('/dashboard', async (req, res) => {
-    console.log("Dashboard session:", req.session);
-
+router.get('/dashboard', withAuth,  async (req, res) => {
     try {
         const blogData = await Blog.findAll({
+            where: {
+                user_id: req.session.user_id
+            },
             include: [
               {
                 model: User,
                 attributes: ['username'],
               },
             ],
-          });
-          
-      const blogs = blogData.map((blog) => blog.get({ plain: true }));
-  
-      res.render('dashboard', {
-        user_username: req.session.user_username,
-        blogs,
-        loggedIn: req.session.loggedIn,
-    }
-    
-    );
-    console.log("Blogs retrieved:", blogs);
+        });
+        
+        const blogs = blogData.map((blog) => blog.get({ plain: true }));
+        console.log("Blogs retrieved:", blogs);
+        res.render('dashboard', {
+            user_username: req.session.user_username,
+            blogs,
+            loggedIn: req.session.loggedIn,
+        });
 
     } catch (err) {
-      res.status(500).json(err);
+        console.error("Error retrieving blogs:", err);
+        res.status(500).json(err);
     }
-    }
-    );
+});
+
 
 module.exports = router;
