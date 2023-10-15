@@ -9,7 +9,7 @@ document.addEventListener('DOMContentLoaded', function() {
                 return;
             }
             const blogId = blogElement.getAttribute('data-blog-id');
-            window.location.href = `/edit-blog/${blogId}`;
+            window.location.href = `/api/blogs/edit-blog/${blogId}`;
         } 
         else if (event.target.matches('.btn-delete')) {
             blogElement = event.target.closest('.blog-card');

@@ -1,0 +1,15 @@
+<h1>Edit Blog Post</h1>
+
+    <form id="edit-blog-form" action="/api/blogs/update/{{blog.id}}" method="POST">
+        <div class="form-group">
+            <label for="blog-title">Title:</label>
+            <input type="text" id="blog-title" name="title" value="{{blog.title}}" required>
+        </div>
+        <div class="form-group">
+            <label for="blog-content">Content:</label>
+            <textarea id="blog-content" name="content" rows="4" required>{{blog.content}}</textarea>
+        </div>
+        <div class="form-group">
+            <button type="submit">Update</button>
+        </div>
+    </form>
