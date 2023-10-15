@@ -3,30 +3,27 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Tech Blog</title>
-    <link rel="stylesheet" href="/css/reset.css">    
-    <link rel="stylesheet" href="/css/style.css">    
+    <title>Tech Blog </title>
 </head>
-
 <body>
-    <div class="header">
-        <h1>Tech Blog</h1>
-            <div class="nav">
-                <a href="/">Home</a>
-                {{!-- * If the user is logged in, show logout --}}
-                {{!-- {{#if user == logged_in}} --}}
-                {{!-- <a href="/">Logout</a> --}}
-                <a href="/dashboard">Dashboard</a>
+    <h1><a href="/">Tech Blog</a></h1>
+    <nav>
+        <ul>
+        <li><a href="/">Home</a></li>
+        {{#if loggedIn}}
+            <li><a href="/dashboard">Dashboard</a></li>
+            <li><button id="logout" class="btn-no-style">Logout</button></li>
+        {{else}}
+            <li><a href="/login">Login</a></li>
+            <li><a href="/login">Dashboard</a></li>
+        {{/if}}
+    </ul>
+    </nav>
+    {{{body}}}
 
-                {{!-- {{else}} --}}
-                <a href="/login">Login</a>
-
-                {{!-- ! Show sign-up button on login page --}}
-            </div>
-</div >
-{{!-- *This renders the sub-pages, such as dashboard --}}
-{{{ body }}}
-{{!-- <script src="/js/main.js"></script> --}}
+     
 </body>
-
+ {{#if loggedIn}}
+  <script src="/js/logout.js"></script>
+  {{/if}}
 </html>

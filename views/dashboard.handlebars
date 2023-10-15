@@ -1,26 +1,35 @@
-{{!-- * Dashboard blog-posts interactivity
-* New Post button
-* Edit post button
-* Delete post button --}}
+<h1>Welcome, {{User_username}} </h1>
 
- {{!-- * Blog form
- * Title
- * Content --}}
+<div class="dashboard-content">
+    <h2>Create a New Blog Post</h2>
 
-<div> 
-    {{!-- * This button will open Modal with option to create new blog post --}}
-    <button class="new-post">New Post</button>
+    <form id="create-blog-form" action="/api/blogs" method="POST">
+        <div class="form-group">
+            <label for="blog-title">Title:</label>
+            <input type="text" id="blog-title" name="title" required>
+        </div>
+        <div class="form-group">
+            <label for="blog-content">Content:</label>
+            <textarea id="blog-content" name="content" rows="4" required></textarea>
+        </div>
+        <div class="form-group">
+            <button type="submit">Submit</button>
+        </div>
+    </form>
 </div>
-<div class="post-creation"> 
-</div>
 
-<form>
-    <input type="text" class="blog-title">Enter Title:</input>
-    <input type="text" class="blog-content">Content:</input>
-    <button class="blog-submit">Submit</button>
-</form>
-
-<div>
-    {{!-- This div will hold created blogs --}}
+<div class="dashboard-content">
+    <h2>Your Blog Posts</h2>
+    {{#each blogs}}
+    <div class="blog-card">
+        <h3>{{title}}</h3>
+        <p>{{content}}</p>
+        <p>{{createdAt}}</p>
+        <div class="btn-group">
+            <button class="btn btn-edit">Edit</button>
+            <button class="btn btn-delete">Delete</button>
+        </div>
+    </div>
+    {{/each}}
 </div>
 
