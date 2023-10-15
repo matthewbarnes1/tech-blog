@@ -1,0 +1,21 @@
+*{
+    background-color: beige;
+    text-color: black;
+    font-size: normal;
+
+}
+
+h1{
+    text-align: left;
+    margin: 20px;
+}
+
+nav ul{
+    list-style:none;
+    display: inline-block;
+}
+
+body{
+    text-align: left;
+    margin: 20px;
+}
